@@ -145,6 +145,7 @@ public class GraphController {
                         "Ya existe un nodo con el valor " + valor + ". Los valores de nodos deben ser únicos.");
             } else {
                 nodoTextField.clear();
+                layout.perturb(grafo.getNodos()); // Perturbar para nuevo layout
                 isAnimating = true; // Reactivar animación
                 mostrarExito("Nodo agregado",
                         "Se agregó exitosamente el nodo con valor " + valor + ". Total de nodos: " + grafo.size());
@@ -185,6 +186,7 @@ public class GraphController {
             } else {
                 origenTextField.clear();
                 destinoTextField.clear();
+                layout.perturb(grafo.getNodos()); // Perturbar para reajuste
                 isAnimating = true; // Reactivar animación
                 mostrarExito("Arista agregada", "Se creó la arista direccional: " + origen + " → " + destino);
                 drawGraph();
@@ -220,6 +222,7 @@ public class GraphController {
                                 "No existe una arista de " + origen + " → " + destino + " en el grafo.");
                     } else {
                         eliminarTextField.clear();
+                        layout.perturb(grafo.getNodos()); // Perturbar para reorganizar
                         isAnimating = true; // Reactivar animación para reorganizar
                         mostrarInfo("Arista eliminada",
                                 "Se eliminó la arista direccional: " + origen + " → " + destino);
@@ -250,8 +253,9 @@ public class GraphController {
                     int totalAristas = aristasSalientes + aristasEntrantes;
 
                     boolean exito = grafo.eliminarNodo(valor);
-                    if (exito) {
                         eliminarTextField.clear();
+                        layout.perturb(grafo.getNodos()); // Perturbar tras eliminación
+                        isAnimating = true; // Iniciar animación para rellenar huecos
                         String mensaje = "Se eliminó el nodo " + valor;
                         if (totalAristas > 0) {
                             mensaje += " y " + totalAristas + " arista(s) asociada(s)";
@@ -269,6 +273,7 @@ public class GraphController {
                         "Entrada inválida: Ingrese un número para eliminar un nodo, o use formato 'origen,destino' para eliminar una arista.");
             }
         }
+
     }
 
     /**
