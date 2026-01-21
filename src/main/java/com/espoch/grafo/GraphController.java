@@ -253,17 +253,16 @@ public class GraphController {
                     int totalAristas = aristasSalientes + aristasEntrantes;
 
                     boolean exito = grafo.eliminarNodo(valor);
-                        eliminarTextField.clear();
-                        layout.perturb(grafo.getNodos()); // Perturbar tras eliminación
-                        isAnimating = true; // Iniciar animación para rellenar huecos
-                        String mensaje = "Se eliminó el nodo " + valor;
-                        if (totalAristas > 0) {
-                            mensaje += " y " + totalAristas + " arista(s) asociada(s)";
-                        }
-                        mensaje += ". Nodos restantes: " + grafo.size();
-                        mostrarInfo("Nodo eliminado", mensaje);
-                        drawGraph();
+                    eliminarTextField.clear();
+                    layout.perturb(grafo.getNodos()); // Perturbar tras eliminación
+                    isAnimating = true; // Iniciar animación para rellenar huecos
+                    String mensaje = "Se eliminó el nodo " + valor;
+                    if (totalAristas > 0) {
+                        mensaje += " y " + totalAristas + " arista(s) asociada(s)";
                     }
+                    mensaje += ". Nodos restantes: " + grafo.size();
+                    mostrarInfo("Nodo eliminado", mensaje);
+                    drawGraph();
                 } else {
                     mostrarAdvertencia("Nodo no encontrado",
                             "No existe un nodo con el valor " + valor + " en el grafo.");
@@ -273,7 +272,6 @@ public class GraphController {
                         "Entrada inválida: Ingrese un número para eliminar un nodo, o use formato 'origen,destino' para eliminar una arista.");
             }
         }
-
     }
 
     /**
